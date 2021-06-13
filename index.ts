@@ -208,3 +208,25 @@ class BarExpandToContainer {
         this.curr.startUpdating(cb)
     }
 }
+
+class Renderer {
+
+    betc : BarExpandToContainer = new BarExpandToContainer()
+    animator : Animator = new Animator()
+
+    render(context : CanvasRenderingContext2D) {
+        this.betc.draw(context)
+    }
+
+    handleTap(cb : Function) {
+        this.betc.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.betc.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
+    }
+}
