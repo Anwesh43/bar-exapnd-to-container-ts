@@ -1,7 +1,7 @@
 const w : number = window.innerWidth 
 const h : number = window.innerHeight 
 const parts : number = 4 
-const scGap : number = 0.02 / parts 
+const scGap : number = 0.032 / parts 
 const strokeFactor : number = 90 
 const delay : number = 20 
 const rot : number = Math.PI / 2
@@ -41,6 +41,9 @@ class DrawingUtil {
         const sc2 : number = ScaleUtil.divideScale(scale, 1, parts)
         const sc3 : number = ScaleUtil.divideScale(scale, 2, parts)
         const sc4 : number = ScaleUtil.divideScale(scale, 3, parts) 
+        if (sc1 <= 0) {
+            return 
+        }
         context.save()
         context.translate(w / 2 + (w / 2 + size) * sc4, h / 2)
         context.rotate(rot * sc3)
